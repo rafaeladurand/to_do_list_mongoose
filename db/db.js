@@ -1,22 +1,16 @@
-let mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
-const server = 'localhost:27017'; 
-const database = 'to-do-list';  
+const connectDatabase = () => {
+  console.log("Wait for connection to database...");
 
-class Database {
-  constructor() {
-    this._connect()
-  }
-  
-_connect() {
-     mongoose.connect(`mongodb://${server}/${database}`)
-       .then(() => {
-         console.log('Database connection successful')
-       })
-       .catch(err => {
-         console.error('Database connection error')
-       })
-  }
-}
+  mongoose
+    .connect(
+      "mongodb+srv://rafaeladurandcontato:root@cluster0.xeuoym1.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0",
+    )
+    .then(() => console.log("MongoDB Atlas Connected"))
+    .catch((error) => console.log(error));
+};
 
-module.exports = new Database()
+module.exports = connectDatabase;
+
+connectDatabase();
